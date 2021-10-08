@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <h1>Dashboard</h1>
+            <div>
+                <a href={{ path('add_product') }}>+ Add a product</a>
+            </div>
+            <div>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col"></th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Added at</th>
+                        <th scope="col">remove from selling</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for product in products %}
+                        <tr>
+                            <th>{{ product.name }}</th>
+                            <td><img src="{{ asset('images/' ~ product.image) }}" alt="" width="75rem" height="75rem"></td>
+                            <td>{{ product.price }}€</td>
+                            <td>{{ product.addedAt | date('d/m/Y') }}</td>
+                            {% if product.status == true %}
+                                <td><a class="btn btn-danger" href="{{ path('modify_product', {id: product.id}) }}">Remove</a></td>
+                            {% else %}
+                                <td><a class="btn btn-success" href="{{ path('modify_product', {id: product.id}) }}">Add to sale</a></td>
+                            {% endif %}
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Add a product{% endblock %}
+
+{% block body %}
+    <style>
+        .example-wrapper {
+            margin: 1em auto;
+            max-width: 800px;
+            width: 95%;
+            font: 18px/1.5 sans-serif;
+        }
+
+        .example-wrapper code {
+            background: #F5F5F5;
+            padding: 2px 6px;
+        }
+    </style>
+
+    <div class="container col-4">
+        <h1>Add a product</h1>
+        {{ form_start(AddProductForm) }}
+        {{ form_row(AddProductForm.name) }}
+        {{ form_row(AddProductForm.description) }}
+        {{ form_row(AddProductForm.price) }}
+        {{ form_row(AddProductForm.image) }}
+        {{ form_row(AddProductForm.status) }}
+        {{ form_row(AddProductForm.submit) }}
+        {{ form_end(AddProductForm) }}
+    </div>
+{% endblock %}
